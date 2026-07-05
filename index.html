@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="te" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>🕉️ నిత్య శ్లోకాలు</title>
+  <meta name="description" content="నిత్య పారాయణ శ్లోకాలు - Daily Devotional Prayers" />
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1a0533" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="శ్లోకాలు" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700&family=Noto+Serif+Telugu:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     SCREEN 1: HOME — Grid of all slokas
+════════════════════════════════════════════════════ -->
+<div class="screen" id="screen-home">
+
+  <!-- Header -->
+  <header class="home-header">
+    <div class="home-header-inner">
+      <div class="home-brand">
+        <span class="home-om">🕉️</span>
+        <div>
+          <h1 class="home-title">నిత్య శ్లోకాలు</h1>
+          <p class="home-sub">Daily Devotional Prayers</p>
+        </div>
+      </div>
+      <div class="home-actions">
+        <button class="hdr-btn" id="btn-fav-view" aria-label="Favorites">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="hdr-btn" id="btn-theme" aria-label="Theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          <svg class="icon-sun hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Search -->
+    <div class="home-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="search-input" placeholder="శ్లోకాలు వెతకండి..." autocomplete="off" />
+    </div>
+  </header>
+
+  <!-- Sloka Grid -->
+  <div class="sloka-grid" id="sloka-grid">
+    <!-- Populated by JS -->
+  </div>
+
+</div><!-- end screen-home -->
+
+
+<!-- ══════════════════════════════════════════════════
+     SCREEN 2: READER — Full screen sloka viewer
+════════════════════════════════════════════════════ -->
+<div class="screen hidden" id="screen-reader">
+
+  <!-- Reader Header -->
+  <header class="reader-header">
+    <button class="back-btn" id="btn-back" aria-label="Back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="reader-meta">
+      <div class="reader-num-title">
+        <span class="reader-num" id="reader-num">#1</span>
+        <h2 class="reader-title" id="reader-title">శ్లోకం</h2>
+      </div>
+      <div class="reader-en" id="reader-en"></div>
+    </div>
+    <div class="reader-actions">
+      <button class="hdr-btn" id="btn-fav-current" aria-label="Favorite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="hdr-btn" id="btn-zoom-toggle" aria-label="Zoom">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Multi-page indicator -->
+  <div class="page-bar hidden" id="page-bar">
+    <button class="page-arrow" id="btn-page-prev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="page-info">పేజీ <strong id="page-cur">1</strong> / <span id="page-tot">1</span></span>
+    <button class="page-arrow" id="btn-page-next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- Image -->
+  <div class="reader-img-wrap" id="reader-img-wrap">
+    <div class="reader-loader" id="reader-loader">
+    <div class="spinner"></div>
+    <div class="loader-text">శ్లోకం లోడ్ అవుతోంది...</div>
+  </div>
+    <img id="reader-img" src="" alt="Sloka" />
+    <!-- placeholder -->
+  </div>
+
+  <!-- Audio Player -->
+  <div class="audio-bar" id="audio-bar">
+    <div class="audio-bar-inner">
+      <span class="audio-icon">🎵</span>
+      <audio id="sloka-audio" controls preload="none"></audio>
+      <span class="audio-no" id="audio-no">Audio రాలేదు</span>
+    </div>
+  </div>
+
+  <!-- Bottom nav: prev sloka / next sloka -->
+  <div class="reader-nav">
+    <button class="rnav-btn" id="btn-sloka-prev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      <span>వెనక్కి</span>
+    </button>
+    <div class="rnav-center">
+      <span class="rnav-pos" id="rnav-pos"></span>
+      <div class="rnav-dot-wrap" id="rnav-dot-wrap"></div>
+    </div>
+    <button class="rnav-btn" id="btn-sloka-next">
+      <span>తదుపరి</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+</div><!-- end screen-reader -->
+
+
+<!-- FAVORITES MODAL -->
+<div class="modal-bg hidden" id="fav-modal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <span>❤️ నా Favorites</span>
+      <button class="hdr-btn" id="btn-close-fav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul id="fav-list" class="fav-list">
+      <li class="fav-empty">ఇంకా Favorites లేవు 🙏</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="slokas.js"></script>
+<script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
